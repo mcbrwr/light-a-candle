@@ -1,18 +1,24 @@
+.light-a-candle--candlebox {
+	position: relative;
+}
 .light-a-candle--candlebox ul {
 	padding: 0;
 	margin: 0!important;
+	background: black!important;
+	position: relative;
+	z-index: 1;
 }
 
 .light-a-candle--candlebox ul li {
 	background: black;
 	color: whitesmoke;
 	padding: .4em .5em .3em 40px;
-	position: relative;
 }
 
-.light-a-candle--candlebox ul li:before {
+.light-a-candle--candlebox:before {
 	content: "";
 	display: block;
+	z-index: 2;
 	background: url('../images/candle.jpg');
 	width: 29px;
 	height: 29px;

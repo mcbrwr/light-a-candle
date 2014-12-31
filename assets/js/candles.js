@@ -7,6 +7,7 @@ jQuery(window).load(function(){
 		'controlNav' : false,
 		'directionNav' : false,
 		'touch' : false,
-		'keyboard' : false
+		'keyboard' : false,
+		'slideshowSpeed' : 3000
 	});
 });
