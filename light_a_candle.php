@@ -4,7 +4,7 @@ Plugin Name: Light a candle
 Plugin URI: https://github.com/mcbrwr/light-a-candle
 Description: Show virtual candles for people in a sidebarwidget, based on posts in a category.
 Author: Art & Flywork
-Version: 1
+Version: 1.0
 Author URI: http://artandflywork.com
 */
 
