@@ -27,6 +27,14 @@ function widget_candles($args) {
 }
 
 function candlesInit() {
-  wp_register_sidebar_widget(__('Light a candle'), 'widget_candles'); }
+  wp_register_sidebar_widget(
+    'light_a_candle',
+    'Light A Candle',
+    'widget_candles',
+    array(
+        'description' => 'Show candles for people in the sidebar based on titles in a specific post categorie'
+    )
+	);
+}
 
 add_action("plugins_loaded", "candlesInit");
