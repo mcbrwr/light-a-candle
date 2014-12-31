@@ -13,6 +13,19 @@ if ( ! defined ( 'ABSPATH' ) ) {
 	exit;
 }
 
+
+/**
+ * Include scripts & CSS for the plugin
+ */
+function candle_assets() {
+  wp_enqueue_style( 'candles-styles',  plugin_dir_url( __FILE__ ) . 'assets/css/candles.css' );
+  wp_enqueue_style( 'flexslider-styles',  plugin_dir_url( __FILE__ ) . 'assets/vendor/flexslider/flexslider.css' );
+  wp_enqueue_script( 'flexslider' , plugin_dir_url( __FILE__ ) . 'assets/vendor/flexslider/jquery.flexslider-min.js', array('jquery'));
+  wp_enqueue_script('candles-script', plugin_dir_url( __FILE__ ) . 'assets/js/candles.js', array('flexslider'));
+  //wp_enqueue_script( 'candles-script' );
+}
+add_action( 'wp_enqueue_scripts', 'candle_assets' );
+
 class light_a_candle extends WP_Widget {
 
 	/**
@@ -41,9 +54,19 @@ class light_a_candle extends WP_Widget {
 		echo $before_widget;
 		if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
-		
+
+
 		// THE WIDGET STUFF
-		echo "render candles here..";
+		$cat  = $instance['cat'];
+		$names = get_posts( array('category' => $cat, 'orderby' => 'rand') );
+		echo '<div class="flexslider light-a-candle--candlebox">';
+		echo '<ul class="slides light-a-candle--candlelist">';
+		foreach ( $names as $post ) : setup_postdata( $post );			
+			echo '<li class="light-a-candle--candle slide">'. $post->post_title . '</li>';
+		endforeach;
+		echo '</ul>';
+		echo '</div>';
+		wp_reset_postdata();
 
 		echo $after_widget;
 	}
@@ -61,7 +84,7 @@ class light_a_candle extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = strip_tags( $new_instance['title'] );
-
+		$instance['cat'] = strip_tags( $new_instance['cat'] );
 		return $instance;
 	}
 
@@ -73,19 +96,18 @@ class light_a_candle extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		if ( isset( $instance[ 'title' ] ) ) {
-			$title = $instance[ 'title' ];
-		}
-		else {
-			$title = 'Light A Candle';
-		}
+
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : "Light A Candle";
+		$cat = ! empty( $instance['cat'] ) ? $instance['cat'] : 0;
+
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label><br>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
-			<?php wp_dropdown_categories( 'show_count=1&hierarchical=1' ); ?>
+			<label for="<?php echo $this->get_field_id( 'cat' ); ?>">Select a posts category, titles of the posts in that category should be the names to present</label><br>
+			<?php wp_dropdown_categories( 'hide_empty=0&hierarchical=1&selected='.$cat."&name=".$this->get_field_name( 'cat' )."&id=".$this->get_field_id( 'cat' ) ); ?>
 		</p>
 		<?php 
 	}

@@ -1,0 +1,26 @@
+{
+  "name": "light-a-candle",
+  "version": "1.0",
+  "homepage": "https://github.com/mcbrwr/light-a-candle",
+  "authors": [
+    "M.C. Brouwer <matthijs@artandflywork.org>"
+  ],
+  "description": "Wordpress widget to show candles with names fetched from posts in a specific category",
+  "main": "light_a_candle.php",
+  "keywords": [
+    "wordpress",
+    "widget"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flexslider": "*"
+  }
+}

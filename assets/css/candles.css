@@ -1,0 +1,22 @@
+.light-a-candle--candlebox ul {
+	padding: 0;
+	margin: 0!important;
+}
+
+.light-a-candle--candlebox ul li {
+	background: black;
+	color: whitesmoke;
+	padding: .4em .5em .3em 40px;
+	position: relative;
+}
+
+.light-a-candle--candlebox ul li:before {
+	content: "";
+	display: block;
+	background: url('../images/candle.jpg');
+	width: 29px;
+	height: 29px;
+	position: absolute;
+	left: 5px;
+	bottom: 0;
+}
