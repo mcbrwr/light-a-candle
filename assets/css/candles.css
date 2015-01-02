@@ -1,6 +1,13 @@
 .light-a-candle--candlebox {
 	position: relative;
 }
+.light-a-candle--candlebox,
+.light-a-candle--candlebox *,
+.light-a-candle--candlebox *:before,
+.light-a-candle--candlebox *:after {
+	box-sizing: border-box;
+}
+
 .light-a-candle--candlebox ul {
 	padding: 0;
 	margin: 0!important;
@@ -13,6 +20,7 @@
 	background: black;
 	color: whitesmoke;
 	padding: .4em .5em .3em 40px;
+	min-height: 29px;
 }
 
 .light-a-candle--candlebox:before {
