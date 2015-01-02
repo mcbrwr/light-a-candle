@@ -11,14 +11,13 @@
 .light-a-candle--candlebox ul {
 	padding: 0;
 	margin: 0!important;
-	background: black!important;
+	background: white!important;
 	position: relative;
 	z-index: 1;
 }
 
 .light-a-candle--candlebox ul li {
-	background: black;
-	color: whitesmoke;
+	background: white;
 	padding: .4em .5em .3em 40px;
 	min-height: 29px;
 }
@@ -27,10 +26,10 @@
 	content: "";
 	display: block;
 	z-index: 2;
-	background: url('../images/candle.jpg');
-	width: 29px;
+	background: url('../images/candle.png') top left no-repeat;
+	width: 16px;
 	height: 29px;
 	position: absolute;
 	left: 5px;
-	bottom: 0;
+	bottom: 0;;
 }
